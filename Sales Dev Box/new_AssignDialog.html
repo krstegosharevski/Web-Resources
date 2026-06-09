@@ -1,0 +1,59 @@
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Assign with Date</title>
+  <script>
+    let formData = {};
+ 
+    async function onLoad() {
+      const params = JSON.parse(Xrm.Page.data.entity.attributes.get("data").getValue() || "{}");
+      document.getElementById("count").innerText = params.count || 0;
+      document.getElementById("assignDate").valueAsDate = new Date();
+    }
+ 
+    function onCancel() {
+      Xrm.Navigation.navigateBack();
+    }
+ 
+    function onAssign() {
+      const date = document.getElementById("assignDate").value
+        ? new Date(document.getElementById("assignDate").value).toISOString()
+        : null;
+ 
+      const assignToId = document.getElementById("assignToId").value;
+      const assignToType = document.getElementById("assignToType").value;
+ 
+      if (!assignToId) {
+        alert("Please provide User/Team ID.");
+        return;
+      }
+ 
+      Xrm.Navigation.navigateBack({
+        assignedDate: date,
+        assignToId: assignToId,
+        assignToType: assignToType
+      });
+    }
+  </script>
+</head>
+ 
+<body onload="onLoad()" style="font-family:Segoe UI;padding:16px;">
+  <h3>Assign Selected Accounts</h3>
+  <p>You are assigning <b><span id="count"></span></b> accounts.</p>
+ 
+  <label>Assign To (GUID):</label><br />
+  <input type="text" id="assignToId" style="width:100%" /><br /><br />
+ 
+  <label>Assign Type:</label><br />
+  <select id="assignToType" style="width:100%">
+    <option value="systemuser">User</option>
+    <option value="team">Team</option>
+  </select><br /><br />
+ 
+  <label>Assign Date:</label><br />
+  <input type="date" id="assignDate" style="width:100%" /><br /><br />
+ 
+  <button onclick="onAssign()">Assign</button>
+  <button onclick="onCancel()">Cancel</button>
+</body>
+</html>
