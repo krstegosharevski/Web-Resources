@@ -17,7 +17,7 @@ function triggerFlowFromRibbon(primaryControl) {
 }
  
 function triggerFlow(journalId, primaryControl) {
-    var flowUrl = "https://prod-97.westeurope.logic.azure.com:443/workflows/ea33dd88df974c98ad3e6d38fd5b78cd/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=l8mF825t4F95q8HKSeAW0nhqNxGqZNTt2rwE-SrC-yU%22;
+    var flowUrl = "https://prod-97.westeurope.logic.azure.com:443/workflows/ea33dd88df974c98ad3e6d38fd5b78cd/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=l8mF825t4F95q8HKSeAW0nhqNxGqZNTt2rwE-SrC-yU%22";
    
     var req = new XMLHttpRequest();
     req.open("POST", flowUrl, true);
